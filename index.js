@@ -16,6 +16,8 @@ app.get('/api', (req, res) => {
     const from = req.query.fr
     const content = req.query.c
 
+    console.log({from: "alfpi.app@gmail.com",to: sendTo,subject: "mail from : " + from,text: content,})
+
     transporter.sendMail({
         from: "alfpi.app@gmail.com",
         to: sendTo,
