@@ -17,14 +17,15 @@ app.get('/api', (req, res) => {
     const fromData = req.query.fr
     const content = req.query.c
 
+
     if (content == "43v1c6468qg413b15b651") {
         console.log(fromData + ' request password verify')
         connection.query("SELECT id, RIGHT(password,5) AS 'endCode' FROM users WHERE email = '" + fromData + "'", function (err, result) {
             if (err) throw err;
             let key = result[0].id + '-' + result[0].endCode
-            console.log(key);
+            // console.log(key);
             let content = "verify your email at this adress = " + "https://alfpi.top/verify.php?key=" + key
-            console.log(content)
+            // console.log(content)
 
             transporter.sendMail({
                 //ptet changer ça ???
@@ -42,8 +43,9 @@ app.get('/api', (req, res) => {
                 }
             });
         });
-    } else {
-
+    } else if(apikey != '' && fromData != '' && content != '' 
+    && apikey != undefined && fromData != undefined && content != undefined 
+    && apikey != null && fromData != null && content != null){
 
         connection.query("SELECT email FROM users WHERE verified = '" + apikey + "'", function (err, mail) {
             if (mail.length == 0 || err) {
@@ -97,6 +99,8 @@ app.get('/api', (req, res) => {
 
             }
         })
+    }else{
+        res.json({ result: 'request has not been written properly !' })
     }
     // res.json({ destinataire: sendTo, envoyeur: from, contenu: content });
 });

@@ -4,6 +4,7 @@ const sender = 'alfredgauthier@free.fr'
 const content = 'content to send'
 
 const request = 'http://localhost:3000/api?key=' + key + '&fr=' + sender + '&c=' + content
+// const request = 'http://localhost:3000/api?key=' + key 
 
 
 sendMail(request);
